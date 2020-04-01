@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run -e CI=true rlee1/frontend npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-k8s-sample"
+  env: "DockerK8sSample-env"
+  bucket_name: "elasticbeanstalk-us-east-2-269108589596"
+  bucket_path: "docker-k8s-sample"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
