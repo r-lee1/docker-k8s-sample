@@ -6,4 +6,4 @@ before_install:
   - docker build -t rlee1/frontend -f frontend/Dockerfile.dev .
 
 script:
-  - docker run rlee1/frontend npm run test -- --coverage
+  - docker run -e CI=true rlee1/frontend npm run test -- --coverage
